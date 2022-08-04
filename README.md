@@ -17,6 +17,8 @@ ALSO ADDED ICONS:<br>
 /icons/nanos_app_tree4.gif<br>
 /icons/nanox_app_tree4.gif<br>
 /glyphs/boilerplate_logo.gif (overwritten)<br>
-Makefile (uploaded here also) modified to reflect icon name changes
+Makefile (uploaded here also) modified to reflect icon name changes.<br><br>
 
-Copy the above named files to the existing app-boilerplate repo to duplicate our build.
+Copy the above named files to the existing app-boilerplate repo to duplicate our build.<br><br>
+
+The /bin directory contains Nano S compiles and our tree_cli command line program to test the new functions.<br>
