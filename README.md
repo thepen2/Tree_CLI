@@ -1,15 +1,15 @@
 # Tree_CLI<br><br>
 
 CHANGES TO THE FOLLOWING FILES:<br>
-/src/common/base58.c<br>
+/src/common/base58.c (new functions to verify basd58 and decimal char arrays<br>
 /src/common/base58.h<br>
-/src/handler/sign_tx.c<br>
-/src/transaction/deserialize.c<br>
+/src/handler/sign_tx.c (forks to new transaction format handlers)<br>
+/src/transaction/deserialize.c (new functions to parse additional transaction formats)<br>
 /src/transaction/deserialize.h<br>
-/src/transaction/types.h<br>
-/src/ui/display.c<br>
+/src/transaction/types.h (new transaction struct elements and additional error messsage defines)<br>
+/src/ui/display.c (handlers for the new transaction signing operations)<br>
 /src/ui/display.h<br>
-/src/ui/menu.c<br>
+/src/ui/menu.c (added app functions to display two account type public keys)<br>
 /src/ui/menu.h<br>
 ALL CHANGES CAN BE FOUND BY SEARCHING THE ABOVE FOR "PEN:"<br><br>
 
