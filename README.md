@@ -1,6 +1,6 @@
 # Tree_CLI
 
-CHANGES TO THE FOLLOWING FILES:
+CHANGES TO THE FOLLOWING FILES:<br>
 /src/common/base58.c
 /src/common/base58.h
 /src/handler/sign_tx.c
