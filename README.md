@@ -1,5 +1,7 @@
 # Tree_CLI<br><br>
 
+The /bin directory contains Nano S compiles and our tree_cli.exe command line program to test the new functions.<br><br>
+
 CHANGES TO THE FOLLOWING FILES:<br>
 /src/common/base58.c (new functions to verify basd58 and decimal char arrays<br>
 /src/common/base58.h<br>
@@ -21,4 +23,4 @@ Makefile (uploaded here also) modified to reflect icon name changes.<br><br>
 
 Copy the above named files to the existing app-boilerplate repo to duplicate our build.<br><br>
 
-The /bin directory contains Nano S compiles and our tree_cli command line program to test the new functions.<br>
+
