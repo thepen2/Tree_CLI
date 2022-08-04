@@ -17,3 +17,6 @@ ALSO ADDED ICONS:<br>
 /icons/nanos_app_tree4.gif<br>
 /icons/nanox_app_tree4.gif<br>
 /glyphs/boilerplate_logo.gif (overwritten)<br>
+Makefile (uploaded here also) modified to reflect icon name changes
+
+Copy the above named files to the existing app-boilerplate repo to duplicate our build.
