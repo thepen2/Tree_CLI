@@ -9,7 +9,7 @@ CHANGES TO THE FOLLOWING FILES:<br>
 /src/transaction/deserialize.c (new functions to parse additional transaction formats)<br>
 /src/transaction/deserialize.h<br>
 /src/transaction/types.h (new transaction struct elements and additional error messsage defines)<br>
-/src/ui/display.c (handlers for the new transaction signing operations)<br>
+/src/ui/display.c (handlers for reviewing the new transaction signing operations)<br>
 /src/ui/display.h<br>
 /src/ui/menu.c (added UX functions to display two account type public keys)<br>
 /src/ui/menu.h<br>
