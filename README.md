@@ -3,7 +3,7 @@
 The /bin directory contains Nano S compiles and our tree_cli.exe command line program to test the new functions.<br><br>
 
 CHANGES TO THE FOLLOWING FILES:<br>
-/src/common/base58.c (new functions to verify basd58 and decimal char arrays<br>
+/src/common/base58.c (new functions to verify base58 and decimal char arrays<br>
 /src/common/base58.h<br>
 /src/handler/sign_tx.c (forks to new transaction format handlers)<br>
 /src/transaction/deserialize.c (new functions to parse additional transaction formats)<br>
