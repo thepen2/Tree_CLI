@@ -1,6 +1,6 @@
 # Tree_CLI<br><br>
 
-The /bin directory contains Nano S compiles and our tree_cli.exe command line program to test the new functions.<br><br>
+The /bin directory contains Nano S compiles and our tree_cli.exe command line program to test the new functions, for the Tree crytpocurrency application interface.<br><br>
 
 CHANGES TO THE FOLLOWING FILES:<br>
 /src/common/base58.c (new functions to verify base58 and decimal char arrays)<br>
