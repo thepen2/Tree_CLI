@@ -4,7 +4,7 @@ The /bin directory contains Nano S compiles and our tree_cli.exe command line pr
 
 In the same way, the /bin-nanosp directory contains the compiles for the Nano S Plus<br><br>
 
-Usage: for tree_cli.exe<br><br>
+Usage: (for tree_cli.exe)<br><br>
     tree_cli 1 // get_app_and_version<br>
     tree_cli 3 // get_version<br>
     tree_cli 4 // get_app_name<br>
