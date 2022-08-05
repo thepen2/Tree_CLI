@@ -2,8 +2,8 @@
 
 The /bin directory contains Nano S compiles and our tree_cli.exe command line program to test the new functions, for the Tree cryptocurrency application interface.<br><br>
 
-Usage: for tree_cli.exe<br>
-&nbsp    tree_cli 1 // get_app_and_version<br>
+Usage: for tree_cli.exe<br><br>
+    tree_cli 1 // get_app_and_version<br>
     tree_cli 3 // get_version<br>
     tree_cli 4 // get_app_name<br>
     tree_cli 5 // get_public_key<br>
