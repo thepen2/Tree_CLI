@@ -2,6 +2,8 @@
 
 The /bin directory contains Nano S compiles and our tree_cli.exe command line program to test the new functions, for the Tree cryptocurrency application interface.<br><br>
 
+The the same way, the /bin-nanosp directory contains the compiles for the Nano S Plus<br><br>
+
 CHANGES TO THE FOLLOWING FILES:<br>
 /src/common/base58.c (new functions to verify base58 and decimal char arrays)<br>
 /src/common/base58.h<br>
