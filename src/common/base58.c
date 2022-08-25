@@ -18,6 +18,7 @@
 #include <stdint.h>   // uint*_t
 #include <string.h>   // memmove, memset
 #include <stdbool.h>  // bool
+#include <stdio.h>    // printf
 
 #include "base58.h"
 
@@ -43,28 +44,31 @@ char const BASE58_ALPHABET[] = {
 };
 
 
-// PEN: TEST FOR BASE 58
+// PEN: TEST FOR BASE 58 CHARS
 bool isBase58(unsigned char *inChars, int startPos, int sizeIn ) {
 
     int ci;
     int ai;
     unsigned char thisChar;
     int base58_limit = sizeof(BASE58_ALPHABET);
-    int foundBase58 = 0;
+    base58_limit = 58;
+    int foundBase58;
 
-    for (ci = startPos; ci > (sizeIn + startPos); ci++) {
+    for (ci = startPos; ci < (sizeIn - startPos); ci++) {
         thisChar = inChars[ci];
         foundBase58 = 0;
         for (ai = 0; ai < base58_limit; ai++) {
-            if (thisChar == BASE58_ALPHABET[ai]) {
+            if ( thisChar == BASE58_ALPHABET[ai]) {
                 foundBase58 = 1;
-            	break;
+            	goto foundBase58;
             } 
         }
+foundBase58:
         if (foundBase58 == 0) {
             return 0;
         }
     }
+
     return 1;
 }
 
@@ -74,7 +78,7 @@ bool isDecimal(unsigned char *inChars, int startPos, int sizeIn ) {
     int ci;
     unsigned char thisChar;
 
-    for (ci = startPos; ci < (sizeIn + startPos); ci++) {
+    for (ci = startPos; ci < (sizeIn - startPos); ci++) {
        thisChar = inChars[ci];
        if ((thisChar < 0x30) || (thisChar > 0x39)) {
           return 0;
@@ -83,6 +87,27 @@ bool isDecimal(unsigned char *inChars, int startPos, int sizeIn ) {
     return 1;
 }
 
+// PEN: TEST FOR HEXADECIMAL CHARS
+bool isHexadecimal(unsigned char *inChars, int startPos, int sizeIn ) {
+
+    int ci;
+    unsigned char thisChar;
+
+    for (ci = startPos; ci < (sizeIn - startPos); ci++) {
+        thisChar = inChars[ci];
+        if ((thisChar > 0x2f) && (thisChar < 0x3a)) {
+        }
+        else if ((thisChar > 0x40) && (thisChar < 0x47)) {
+        }
+        else if ((thisChar > 0x60) && (thisChar < 0x67)) {
+        }
+        else {
+            return 0;
+        }
+
+    }
+    return 1;
+}
 
 int base58_decode(const char *in, size_t in_len, uint8_t *out, size_t out_len) {
     uint8_t tmp[MAX_DEC_INPUT_SIZE] = {0};
