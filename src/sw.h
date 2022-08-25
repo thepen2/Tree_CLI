@@ -4,18 +4,6 @@
  * Status word for success.
  */
 #define SW_OK 0x9000
-
-
-#define SW_TREE_ERROR_1 0x9001
-#define SW_TREE_ERROR_2 0x9002
-#define SW_TREE_ERROR_3 0x9003
-#define SW_TREE_ERROR_4 0x9004
-#define SW_TREE_ERROR_5 0x9005
-#define SW_TREE_ERROR_6 0x9006
-#define SW_TREE_ERROR_7 0x9007
-#define SW_TREE_ERROR_8 0x9008
-
-
 /**
  * Status word for denied by user.
  */
@@ -72,3 +60,8 @@
  * Status word for signature fail.
  */
 #define SW_SIGNATURE_FAIL 0xB008
+
+
+// PEN: EXTRA STATUS WORDS
+#define SW_ADDRESS_MISMATCH 0x7001
+

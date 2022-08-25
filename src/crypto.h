@@ -3,6 +3,8 @@
 
 #include <stdint.h>  // uint*_t
 
+// PEN: TRIED #include "/opt/nanos-secure-sdk/include/os.h"
+
 #include "os.h"
 #include "cx.h"
 

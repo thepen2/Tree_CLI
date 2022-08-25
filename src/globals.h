@@ -2,7 +2,16 @@
 
 #include <stdint.h>
 
+// PEN: CHANGED FROM "ux.h" BUT DID NOT HELP cmocka UNABLE TO FIND FILE
+
+// IO_SEPROSYHAL_BUFFER_SIZE_B SPECIFIC TO NANOS ONLY, OTHERWISE 300
+#ifdef CMOCKA_TEST
+#define IO_SEPROXYHAL_BUFFER_SIZE_B 128  
+#include "/app/unit-tests/utils/ux.h"
+#else
 #include "ux.h"
+#endif
+
 
 #include "io.h"
 #include "types.h"

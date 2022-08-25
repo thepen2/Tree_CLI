@@ -2,10 +2,13 @@
 
 #include <stdint.h>
 
+// PEN; CHANGED FROM "ux.h" BUT DID NOT HELP cmocka UNABLE TO FIND FILE
+
+
 #include "ux.h"
 #include "os_io_seproxyhal.h"
 
-#include "types.h"
+#include "types.h" 
 #include "common/buffer.h"
 
 void io_seproxyhal_display(const bagl_element_t *element);

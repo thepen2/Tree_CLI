@@ -19,8 +19,8 @@
 #include <string.h>   // memset, explicit_bzero
 #include <stdbool.h>  // bool
 
-#include "crypto.h"
 
+#include "crypto.h"
 #include "globals.h"
 
 int crypto_derive_private_key(cx_ecfp_private_key_t *private_key,
@@ -78,6 +78,8 @@ int crypto_sign_message() {
                               G_context.bip32_path,
                               G_context.bip32_path_len);
 
+//    size_t signatureLen = sizeof(G_context.tx_info.signature);
+
     BEGIN_TRY {
         TRY {
             sig_len = cx_ecdsa_sign(&private_key,
@@ -88,6 +90,17 @@ int crypto_sign_message() {
                                     G_context.tx_info.signature,
                                     sizeof(G_context.tx_info.signature),
                                     &info);
+
+//            cx_ecdsa_sign_no_throw(&private_key,
+//                                    CX_RND_RFC6979 | CX_LAST,
+//                                    CX_SHA256,
+//                                    G_context.tx_info.m_hash,
+//                                    sizeof(G_context.tx_info.m_hash),
+//                                    G_context.tx_info.signature,
+//                                    &signatureLen,
+//                                    NULL);
+
+
             PRINTF("Signature: %.*H\n", sig_len, G_context.tx_info.signature);
         }
         CATCH_OTHER(e) {
