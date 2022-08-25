@@ -19,6 +19,10 @@ ifeq ($(BOLOS_SDK),)
 $(error Environment variable BOLOS_SDK is not set)
 endif
 
+define NEWLINE
+
+endef
+
 include $(BOLOS_SDK)/Makefile.defines
 
 APP_LOAD_PARAMS  = --curve secp256k1
@@ -33,7 +37,7 @@ APP_LOAD_PARAMS += $(COMMON_LOAD_PARAMS)
 APPNAME      = "Tree"
 APPVERSION_M = 1
 APPVERSION_N = 0
-APPVERSION_P = 1
+APPVERSION_P = 2
 APPVERSION   = "$(APPVERSION_M).$(APPVERSION_N).$(APPVERSION_P)"
 
 ifeq ($(TARGET_NAME),TARGET_NANOS)
