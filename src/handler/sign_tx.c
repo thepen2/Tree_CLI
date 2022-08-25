@@ -103,12 +103,18 @@ int handler_sign_tx(buffer_t *cdata, uint8_t chunk, bool more) {
 
             G_context.state = STATE_PARSED;
 
-            cx_sha3_t keccak256;
-            cx_keccak_init(&keccak256, 256);
+// THIS IS WRONG FOR OUR PURPOSES, JUST WANT A SIMPLE SHA256
+//            cx_sha3_t keccak256;
+//            cx_keccak_init(&keccak256, 256);
  
-            cx_hash((cx_hash_t *) &keccak256,
-                    CX_LAST,
-                    G_context.tx_info.raw_tx,
+//            cx_hash((cx_hash_t *) &keccak256,
+//                    CX_LAST,
+//                    G_context.tx_info.raw_tx,
+//                    G_context.tx_info.raw_tx_len,
+//                    G_context.tx_info.m_hash,
+//                    sizeof(G_context.tx_info.m_hash));
+
+            cx_hash_sha256(G_context.tx_info.raw_tx,
                     G_context.tx_info.raw_tx_len,
                     G_context.tx_info.m_hash,
                     sizeof(G_context.tx_info.m_hash));
@@ -116,7 +122,7 @@ int handler_sign_tx(buffer_t *cdata, uint8_t chunk, bool more) {
             PRINTF("Hash: %.*H\n", sizeof(G_context.tx_info.m_hash), G_context.tx_info.m_hash);
 
 // PEN: FORK TRANSACTION TYPES
-            if (txTypeCheck == 0x3a) { // STARTUP
+            if (txTypeCheck == 0x3a) { // GENERAL ACTION APPROVAL
                 return ui_display_transaction_1();
             } 
             else if (numRecps == 0x01) {
