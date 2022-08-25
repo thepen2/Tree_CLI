@@ -36,12 +36,16 @@
 #include "../common/bip32.h"
 #include "../common/format.h"
 
+// PEN: EXTRA INCLUDE
+#include "extra1.h"
+#include "extra2.h"
+
 static action_validate_cb g_validate_callback;
 static char g_amount[30];
 static char g_bip32_path[60];
 static char g_address[43];
 
-// PEN: EXTRA LOCAL GLOBALS
+// PEN: EXTRA LOCAL GLOBALS, +1 IN SIZE FOR NULL TERMINATOR
 static char g_timestamp[11];
 static char g_tempPubK[69];  // TWO EXTRA BYTES FOR THE "0x"
 static char g_startup_address[44];
@@ -50,9 +54,10 @@ static char g_recp1_address[44];
 char g_recp1_amount[18];
 static char g_recp2_address[44];
 char g_recp2_amount[18];
+static char g_text[33] = { 0 };
 
 // Step with icon and text
-UX_STEP_NOCB(ux_display_confirm_addr_step, pn, {&C_icon_eye, "Confirm Address"});
+UX_STEP_NOCB(ux_display_confirm_addr_step, pn, {&C_icon_eye, "Confirm address"});
 // Step with title/text for BIP32 path
 UX_STEP_NOCB(ux_display_path_step,
              bnnn_paging,
@@ -131,7 +136,7 @@ UX_STEP_NOCB(ux_display_review_step,
              {
                  &C_icon_eye,
                  "Review",
-                 "Transaction",
+                 "transaction",
              });
 // Step with title/text for amount
 UX_STEP_NOCB(ux_display_amount_step,
@@ -198,14 +203,14 @@ UX_STEP_NOCB(ux_display_timestamp_step,
 UX_STEP_NOCB(ux_display_temp_public_key_step,
              bnnn_paging,
              {
-                 "Temp Public Key",
+                 "Temp public key",
                  g_tempPubK,
              });
 // Step with startup chain address
 UX_STEP_NOCB(ux_display_startup_chain_address_step,
              bnnn_paging,
              {
-                 "Startup Address",
+                 "Startup address",
                  g_startup_address,
              });
 // Step with authorize startup button
@@ -215,7 +220,7 @@ UX_STEP_CB(ux_display_authorize_startup_step,
            {
                &C_icon_validate_14,
                "Authorize",
-               "Start Up",
+               "start up",
            });
 
 // FLOW to display transaction 1 (authorize startup) information:
@@ -228,7 +233,23 @@ UX_FLOW(ux_display_transaction_1_flow,
 //        &ux_display_timestamp_step,
 //        &ux_display_temp_public_key_step,
         &ux_display_startup_chain_address_step,
+//        &ux_display_hash_step,
         &ux_display_authorize_startup_step,
+        &ux_display_reject_step);
+
+// FLOW to display general action approval
+// Step with approve general button
+UX_STEP_CB(ux_display_approve_general_step,
+           pbb,
+           (*g_validate_callback)(true),
+           {
+               &C_icon_validate_14,
+               "Approve", 
+               g_text,
+           });
+
+UX_FLOW(ux_display_transaction_general_flow,
+        &ux_display_approve_general_step,
         &ux_display_reject_step);
 
 int ui_display_transaction_1() {
@@ -237,56 +258,58 @@ int ui_display_transaction_1() {
         return io_send_sw(SW_BAD_STATE);
     }
 
-    memmove((char *) g_timestamp, G_context.tx_info.transaction.timestamp, 10);
-    g_timestamp[10] = 0x00;  // NULL TERMINATE
+    if (G_context.tx_info.transaction.tempPubK[0] == 0x01) {
+        memmove((char *) g_text, G_context.tx_info.transaction.tempPubK + 1, 32);
+        g_text[32] = 0x00;  // NULL TERMINATE, SUPERFLOUS, WHOLE ARRAY ZEROED TO INIT
+    }
+    else {
+        memmove((char *) g_timestamp, G_context.tx_info.transaction.timestamp, 10);
+        g_timestamp[10] = 0x00;  // NULL TERMINATE
+    }
+
     memmove((char *) g_startup_address, G_context.tx_info.transaction.startup, 43);
     g_startup_address[43] = 0x00;    // NULL TERMINATE
+
+    char legacyAddress2[34];
+    memmove( (char *) legacyAddress2, (char * ) g_startup_address + 9, 34);
+    int matchResult = matchAddress( (char * ) legacyAddress2);
+
+    if (matchResult == 0) {
+         return io_send_sw(SW_ADDRESS_MISMATCH);
+    }
+
     snprintf(g_tempPubK, sizeof(g_tempPubK), "0x%.*H", 33, G_context.tx_info.transaction.tempPubK);
     g_tempPubK[68] = 0x00;   // NULL TERMINATE. 2 EXTRA BYTES FOR THE "0x"
 
     g_validate_callback = &ui_action_validate_transaction;
 
-    ux_flow_init(0, ux_display_transaction_1_flow, NULL);
+    if (G_context.tx_info.transaction.tempPubK[0]== 0x01) {
+        ux_flow_init(0, ux_display_transaction_general_flow, NULL);
+    }
+    else {
+        ux_flow_init(0, ux_display_transaction_1_flow, NULL);
+    }
 
     return 0;
 
 }
 
-
 // Step with sender chain address
 UX_STEP_NOCB(ux_display_sender_address_step,
              bnnn_paging,
              {
-                 "Transfer from:",
+                 "Send from your",
                  g_sender_address,
              });
 // Step with recipient1 chain address
 UX_STEP_NOCB(ux_display_recipient_address_step,
              bnnn_paging,
              {
-                 "Recp Address",
+                 "To recp address",
                  g_recp1_address,
-             });
-// Step with recipient1 chain address
-UX_STEP_NOCB(ux_display_recipient1_address_step,
-             bnnn_paging,
-             {
-                 "Recp 1 Address",
-                 g_recp1_address,
-             });
-// Step with recipient2 chain address (OPTIONAL)
-UX_STEP_NOCB(ux_display_recipient2_address_step,
-             bnnn_paging,
-             {
-                 "Recp 2 Address",
-                 g_recp2_address,
              });
 // Step with single recipient amount
 UX_STEP_NOCB(ux_display_recipient_amount_step, bn, {"Amount: ", g_recp1_amount});
-// Step with recipient 1 amount
-UX_STEP_NOCB(ux_display_recipient1_amount_step, bn, {"Amount 1: ", g_recp1_amount});
-// Step with recipient 2 amount (OPTIONAL)
-UX_STEP_NOCB(ux_display_recipient2_amount_step, bn, {"Amount 2: ", g_recp2_amount});
 
 // Step with approve transaction button
 UX_STEP_CB(ux_display_approve_transaction_step,
@@ -295,30 +318,19 @@ UX_STEP_CB(ux_display_approve_transaction_step,
            {
                &C_icon_validate_14,
                "Approve", 
-               "Transaction",
+               "transaction",
            });
 
-// FLOW to display transaction 2 (standard transaction) information:
+// FLOW to display transaction 2_1 (standard transaction, 1 recp) information:
 // #1 screen : sender account    
-// #2 screen : recipient 1 
-// #3 screen : recipient 1 amount
-// #4 screen : recipient 2 (OPTIONAL)
-// #5 screen : recipient 2 amount (OPTIONAL)
-// #6 screen : approve button for authorize start up
-// #7 screen : reject button
+// #2 screen : recipient
+// #3 screen : recipient amount
+// #4 screen : approve button for authorize start up
+// #5 screen : reject button
 UX_FLOW(ux_display_transaction_2_flow_1,
         &ux_display_sender_address_step,
         &ux_display_recipient_address_step,
         &ux_display_recipient_amount_step,
-        &ux_display_approve_transaction_step,
-        &ux_display_reject_step);
-
-UX_FLOW(ux_display_transaction_2_flow_2,
-        &ux_display_sender_address_step,
-        &ux_display_recipient1_address_step,
-        &ux_display_recipient1_amount_step,
-        &ux_display_recipient2_address_step,
-        &ux_display_recipient2_amount_step,
         &ux_display_approve_transaction_step,
         &ux_display_reject_step);
 
@@ -331,6 +343,14 @@ int ui_display_transaction_2_1() {
     
     memmove((char *) g_sender_address, G_context.tx_info.transaction.sender + 9, 34);
     g_sender_address[34] = 0x00;    // NULL TERMINATE
+
+    int matchResult = matchAddress( (char * ) g_sender_address);
+
+    if (matchResult == 0) {
+         return io_send_sw(SW_ADDRESS_MISMATCH);
+    }
+
+
     memmove((char *) g_recp1_address, G_context.tx_info.transaction.recp1 + 9, 34);
     g_recp1_address[34] = 0x00;    // NULL TERMINATE
 
@@ -345,6 +365,43 @@ int ui_display_transaction_2_1() {
 
 }
 
+// Step with recipient1 chain address
+UX_STEP_NOCB(ux_display_recipient1_address_step,
+             bnnn_paging,
+             {
+                 "To recp 1 address",
+                 g_recp1_address,
+             });
+// Step with recipient2 chain address (OPTIONAL)
+UX_STEP_NOCB(ux_display_recipient2_address_step,
+             bnnn_paging,
+             {
+                 "To recp 2 address",
+                 g_recp2_address,
+             });
+
+// Step with recipient 1 amount
+UX_STEP_NOCB(ux_display_recipient1_amount_step, bn, {"Amount 1: ", g_recp1_amount});
+// Step with recipient 2 amount (OPTIONAL)
+UX_STEP_NOCB(ux_display_recipient2_amount_step, bn, {"Amount 2: ", g_recp2_amount});
+
+// FLOW to display transaction 2_2 (standard transaction, 2 recps) information:
+// #1 screen : sender account    
+// #2 screen : recipient 1 
+// #3 screen : recipient 1 amount
+// #4 screen : recipient 2 (OPTIONAL)
+// #5 screen : recipient 2 amount (OPTIONAL)
+// #6 screen : approve button for authorize start up
+// #7 screen : reject button
+UX_FLOW(ux_display_transaction_2_flow_2,
+        &ux_display_sender_address_step,
+        &ux_display_recipient1_address_step,
+        &ux_display_recipient1_amount_step,
+        &ux_display_recipient2_address_step,
+        &ux_display_recipient2_amount_step,
+        &ux_display_approve_transaction_step,
+        &ux_display_reject_step);
+
 int ui_display_transaction_2_2() {
 
     if (G_context.req_type != CONFIRM_TRANSACTION || G_context.state != STATE_PARSED) {
@@ -354,6 +411,13 @@ int ui_display_transaction_2_2() {
     
     memmove((char *) g_sender_address, G_context.tx_info.transaction.sender + 9, 34);
     g_sender_address[34] = 0x00;    // NULL TERMINATE
+
+    int matchResult = matchAddress( (char * ) g_sender_address);
+
+    if (matchResult == 0) {
+         return io_send_sw(SW_ADDRESS_MISMATCH);
+    }
+
     memmove((char *) g_recp1_address, G_context.tx_info.transaction.recp1 + 9, 34);
     g_recp1_address[34] = 0x00;    // NULL TERMINATE
     memmove((char *) g_recp2_address, G_context.tx_info.transaction.recp2 + 9, 34);
@@ -371,41 +435,3 @@ int ui_display_transaction_2_2() {
 
 }
 
-void dotDecimal( unsigned char * rawDecimal, char * outChars) {
-
-    int firstDigitPos = 0;
-    int ai = 0;
-    int wroteDot = 0;
-    char thisDigit;
-    for (ai = 0; ai < 16; ai++) {
-        thisDigit = rawDecimal[ai];
-        if (thisDigit != 0x30) {
-            firstDigitPos = ai;
-            break;
-        }
-    }
-    if (firstDigitPos > 9) {  // THIS ONE WORKS
-        outChars[0] = 0x30;
-        outChars[1] = 0x2e;
-        for (ai = 0; ai < 6; ai++) {
-            outChars[ai + 2] = rawDecimal[ai + 10];
-        }
-        outChars[ai + 2] = 0x00;  // NULL TERMINATE
-    }
-    else {
-        for (ai = 0; ai < 16; ai++) {
-            if (ai < firstDigitPos) {
-            }
-            else if (ai == 9) {  // POSITION OF DECIMAL POINT AFTER DIGIT 10
-                outChars[ai - firstDigitPos] = rawDecimal[ai];
-                outChars[ai - firstDigitPos + 1] = 0x2e;
-                wroteDot = 1;
-            }
-            else {
-                outChars[ai - firstDigitPos + wroteDot] = rawDecimal[ai];
-            }
-        }   
-        outChars[ai -firstDigitPos + wroteDot] = 0x00;  // NULL TERMINATE
-    }
-
-}
