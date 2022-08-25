@@ -1,6 +1,6 @@
 # Tree_CLI<br><br>
 
-The /bin-nanos directory contains Nano S compiles, the /bin-nanosp directory contains Nano S Plus compiles, and the /bin-nanox directory contains Nano X app compiles.<br><br>
+For our new Ledger Nano app, the /bin-nanos directory contains Nano S compiles, the /bin-nanosp directory contains Nano S Plus compiles, and the /bin-nanox directory contains Nano X compiles.<br><br>
 
 In the /bin-tree_cli directory is our tree_cli_plus.exe Win32 command line program to test the new functions, for the Tree cryptocurrency application interface.<br><br>
 
