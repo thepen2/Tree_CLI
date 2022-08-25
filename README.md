@@ -5,9 +5,9 @@ For our new Ledger Nano app, the /bin-nanos directory contains Nano S compiles, 
 In the /bin-tree_cli directory is our tree_cli_plus.exe Win32 command line program to test the new functions, for the Tree cryptocurrency application interface.<br><br>
 
 Usage: (for tree_cli_plus.exe)<br><br>
-    tree_cli_plus 0 // throw_addr_mismatch<br>
+    tree_cli_plus 0 // signe_tx() address mismatch<br>
     tree_cli_plus 1 // get_app_and_version<br>
-    tree_cli_plus 2 // approve_pwd_change<br>
+    tree_cli_plus 2 // approve_password_change<br>
     tree_cli_plus 3 // get_version<br>
     tree_cli_plus 4 // get_app_name<br>
     tree_cli_plus 5 // get_public_key<br>
