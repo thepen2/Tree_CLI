@@ -44,6 +44,6 @@ ALSO ADDED ICONS:<br>
 /glyphs/boilerplate_logo.gif (overwritten)<br>
 Makefile (uploaded here also) modified to reflect icon name changes.<br><br>
 
-Copy the above named files to the existing app-boilerplate repo to duplicate our build.<br><br>
+Copy all the files in this repo except the bin directories to the existing app-boilerplate repo to duplicate our builds.<br><br>
 
 
