@@ -29,7 +29,7 @@ CHANGES TO THE FOLLOWING FILES:<br>
 /src/ui/extra1.h<br>
 /src/ui/extra2.c<br> (new functions to format dotted decimal amounts and convert char arays to lower case)<br>
 /src/ui/extra2.h<br>
-/src/ui/menu.c (added UX functions to display two account type public keys)<br>
+/src/ui/menu.c (added UX functions to display two account type base58 addresses)<br>
 /src/ui/menu.h<br>
 ALL CHANGES CAN BE FOUND BY SEARCHING THE ABOVE FOR "PEN:"<br><br>
 
