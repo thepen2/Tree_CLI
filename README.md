@@ -33,9 +33,9 @@ CHANGES TO THE FOLLOWING FILES:<br>
 /src/ui/menu.h<br>
 ALL CHANGES CAN BE FOUND BY SEARCHING THE ABOVE FOR "PEN:"<br><br>
 
-3 new tests in the /unit-tests directory, test_lowercase.c, test_charsets.c and test_dotted_decimal.c, and entries added to the /unit-tests/CMkaeLists.txt file.  Run tests with:<br><br>
+3 new tests in the /unit-tests directory, test_lowercase.c, test_charsets.c and test_dotted_decimal.c, and entries added to the /unit-tests/CMakeLists.txt file.  Run tests with:<br><br>
 
-cmake -Bbuild -H. && make -C build
+cmake -Bbuild -H. && make -C build<br>
 CTEST_OUTPUT_ON_FAILURE=1 make -C build test<br><br>
 
 ALSO ADDED ICONS:<br>
