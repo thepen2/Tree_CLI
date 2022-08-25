@@ -1,6 +1,8 @@
 # Tree_CLI<br><br>
 
-The /bin-nanos directory contains Nano S compiles, the /bin-nanosp directory contains Nano S Plus compiles, and the /bin-nanox directory contains Nano X app compiles.  In the /bin-tree_cli direcotyr is our tree_cli_plus.exe command line program to test the new functions, for the Tree cryptocurrency application interface.<br><br>
+The /bin-nanos directory contains Nano S compiles, the /bin-nanosp directory contains Nano S Plus compiles, and the /bin-nanox directory contains Nano X app compiles.<br><br>
+
+In the /bin-tree_cli directory is our tree_cli_plus.exe Win32 command line program to test the new functions, for the Tree cryptocurrency application interface.<br><br>
 
 Usage: (for tree_cli_plus.exe)<br><br>
     tree_cli_plus 0 // throw_addr_mismatch<br>
