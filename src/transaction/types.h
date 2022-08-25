@@ -24,7 +24,7 @@ typedef enum {
     STARTUP_PARSING_ERROR = -11,
     NOT_BASE58_ERROR = -12,
     NOT_DECIMAL_ERROR = -13,
-    NOT_COMPRESSED_PUBK_ERROR = -14,
+    TEMP_PUBK_ERROR = -14,
     SENDER_PARSING_ERROR = -15,
     TX_ID_PARSING_ERROR = -16,
     NUM_RECPS_PARSING_ERROR = -17,
@@ -36,7 +36,7 @@ typedef enum {
     NOT_DECIMAL_ERROR_1 = -23,
     NOT_DECIMAL_ERROR_2 = -24,
     NOT_DECIMAL_ERROR_3 = -25,
-    TEST_ERROR = -128,
+//    TEST_ERROR = -128,
 
 } parser_status_e;
 

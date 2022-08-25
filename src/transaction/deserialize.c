@@ -97,8 +97,10 @@ parser_status_e transaction_deserialize_1(buffer_t *buf, transaction_t *tx) {
         return TEMP_PUBK_PARSING_ERROR;
     }
 
-    if ((tx->tempPubK[0] != 0x02) && (tx->tempPubK[0] != 0x03)) {
-        return NOT_COMPRESSED_PUBK_ERROR;
+    if ((tx->tempPubK[0] != 0x02) && 
+        (tx->tempPubK[0] != 0x03) &&
+        (tx->tempPubK[0] != 0x01) ) {
+        return TEMP_PUBK_ERROR;
     }
 
     buf->offset += 1;  // SKIP COLON SPACER
@@ -181,7 +183,7 @@ parser_status_e transaction_deserialize_2(buffer_t *buf, transaction_t *tx) {
     tx->recp1 = (uint8_t *) (buf->ptr + buf->offset);
 
     if (!buffer_seek_cur(buf, 43)) {
-        return TEST_ERROR;  // RETURNS 0xff80, THAT"S CORRECT
+        //return TEST_ERROR;  // RETURNS 0xff80, THAT"S CORRECT
         return RECP1_PARSING_ERROR;
     }
 
@@ -231,7 +233,7 @@ parser_status_e transaction_deserialize_2(buffer_t *buf, transaction_t *tx) {
     }
 
     if ((tx->sendPubK[0] != 0x02) && (tx->sendPubK[0] != 0x03)) {
-        return NOT_COMPRESSED_PUBK_ERROR;
+        return TEMP_PUBK_ERROR;
     }
 
     return (buf->offset == buf->size) ? PARSING_OK : WRONG_LENGTH_ERROR;
