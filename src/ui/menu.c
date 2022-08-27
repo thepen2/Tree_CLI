@@ -38,10 +38,10 @@ UX_STEP_NOCB(ux_menu_ready_step, pnn, {&C_boilerplate_logo, "Tree", "is ready"})
 UX_STEP_NOCB(ux_menu_version_step, bn, {"Version", APPVERSION});
 
 // PEN: EXTRA STEPS
-UX_STEP_CB(ux_menu_show_hot_pub_key_step, bn, ui_menu_show_hot_pub_key(), {"Show hot pub key", "m/44'/632'/0'"});
-UX_STEP_CB(ux_menu_show_cold_pub_key_step, bn, ui_menu_show_cold_pub_key(), {"Show cold pub key", "m/44'/632'/1'"});
-UX_STEP_CB(ux_menu_show_hot_address_step, bn, ui_menu_show_hot_address(), {"Show hot address", "m/44'/632'/0'"});
-UX_STEP_CB(ux_menu_show_cold_address_step, bn, ui_menu_show_cold_address(), {"Show cold address", "m/44'/632'/1'"});
+UX_STEP_CB(ux_menu_show_hot_pub_key_step, bn, ui_menu_show_hot_pub_key(), {"Show hot pub key", "m/44'/644'/0'"});
+UX_STEP_CB(ux_menu_show_cold_pub_key_step, bn, ui_menu_show_cold_pub_key(), {"Show cold pub key", "m/44'/644'/1'"});
+UX_STEP_CB(ux_menu_show_hot_address_step, bn, ui_menu_show_hot_address(), {"Show hot address", "m/44'/644'/0'"});
+UX_STEP_CB(ux_menu_show_cold_address_step, bn, ui_menu_show_cold_address(), {"Show cold address", "m/44'/644'/1'"});
 
 UX_STEP_CB(ux_menu_about_step, pb, ui_menu_about(), {&C_icon_certificate, "About"});
 UX_STEP_VALID(ux_menu_exit_step, pb, os_sched_exit(-1), {&C_icon_dashboard_x, "Quit"});
@@ -110,7 +110,7 @@ UX_FLOW(ux_menu_show_hot_pub_key_flow2, &ux_menu_show_hot_pub_key_step2, &ux_men
 void ui_menu_show_hot_pub_key() {
 
     uint8_t bip32_path_len_0 = 3;
-    uint32_t bip32_path_0[3] = {0x8000002c, 0x80000278, 0x80000000};
+    uint32_t bip32_path_0[3] = {0x8000002c, 0x80000284, 0x80000000};
 
     bip32_to_pubkey((uint32_t *) bip32_path_0, bip32_path_len_0, (char * ) pubkey_0_chars, 131, (unsigned char * )pubkey_0_hex);
 
@@ -131,7 +131,7 @@ UX_FLOW(ux_menu_show_hot_address_flow2, &ux_menu_show_hot_address_step2, &ux_men
 void ui_menu_show_hot_address() {
 
     uint8_t bip32_path_len_0 = 3;
-    uint32_t bip32_path_0[3] = {0x8000002c, 0x80000278, 0x80000000};
+    uint32_t bip32_path_0[3] = {0x8000002c, 0x80000284, 0x80000000};
 
     bip32_to_pubkey((uint32_t *) bip32_path_0, bip32_path_len_0, (char * ) pubkey_0_chars, 131, (unsigned char * ) pubkey_0_hex);
 
@@ -152,7 +152,7 @@ UX_FLOW(ux_menu_show_cold_pub_key_flow2, &ux_menu_show_cold_pub_key_step2, &ux_m
 void ui_menu_show_cold_pub_key() {
 
     uint8_t bip32_path_len_1 = 3;
-    uint32_t bip32_path_1[3] = {0x8000002c, 0x80000278, 0x80000001};
+    uint32_t bip32_path_1[3] = {0x8000002c, 0x80000284, 0x80000001};
 
     bip32_to_pubkey((uint32_t *) bip32_path_1, bip32_path_len_1, (char * ) pubkey_1_chars, 131, (unsigned char * )pubkey_1_hex);
 
@@ -175,7 +175,7 @@ void ui_menu_show_cold_address() {
 // CALCULATE COLD KEY HERE, SO IT CAN BE SHOWN IN NEXT STEP
 
     uint8_t bip32_path_len_1 = 3;
-    uint32_t bip32_path_1[3] = {0x8000002c, 0x80000278, 0x80000001};
+    uint32_t bip32_path_1[3] = {0x8000002c, 0x80000284, 0x80000001};
 
     bip32_to_pubkey((uint32_t *) bip32_path_1, bip32_path_len_1, (char * ) pubkey_1_chars, 131, (unsigned char * ) pubkey_1_hex);
 
