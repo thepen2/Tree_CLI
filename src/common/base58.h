@@ -55,3 +55,4 @@ int base58_encode(const uint8_t *in, size_t in_len, char *out, size_t out_len);
 bool isBase58(unsigned char *inChars, int startPos, int sizeIn);
 bool isDecimal(unsigned char *inChars, int startPos, int sizeIn);
 bool isHexadecimal(unsigned char *inChars, int startPos, int sizeIn);
+bool isTextString(unsigned char *inChars, int startPos, int sizeIn);
