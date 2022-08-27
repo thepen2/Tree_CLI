@@ -17,7 +17,7 @@ Usage: (for tree_cli_plus.exe)<br><br>
     tree_cli_plus 9 // sign_tx (2 recipients)<br><br>
 
 CHANGES TO THE FOLLOWING FILES:<br>
-/src/common/base58.c (new functions to verify base58, decimal and hexadeciaml char arrays)<br>
+/src/common/base58.c (new functions to verify base58, decimal, hexadeciaml, and text string char arrays)<br>
 /src/common/base58.h<br>
 /src/handler/sign_tx.c (forks to new transaction format handlers)<br>
 /src/transaction/deserialize.c (new functions to parse additional transaction formats)<br>
