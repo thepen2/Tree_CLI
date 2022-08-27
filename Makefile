@@ -19,6 +19,7 @@ ifeq ($(BOLOS_SDK),)
 $(error Environment variable BOLOS_SDK is not set)
 endif
 
+# PEN: ADDED
 define NEWLINE
 
 endef
@@ -31,9 +32,10 @@ APP_LOAD_PARAMS=--appFlags 0x200  # APPLICATION_FLAG_BOLOS_SETTINGS
 else
 APP_LOAD_PARAMS=--appFlags 0x000
 endif
-APP_LOAD_PARAMS += --path "44'"
+APP_LOAD_PARAMS += --path "44'/644'"  # MUST MATCH HARD SETS IN menu.c
 APP_LOAD_PARAMS += $(COMMON_LOAD_PARAMS)
 
+# PEN: MODIFIED
 APPNAME      = "Tree"
 APPVERSION_M = 1
 APPVERSION_N = 0
@@ -128,6 +130,9 @@ delete:
 	python3 -m ledgerblue.deleteApp $(COMMON_DELETE_PARAMS)
 
 include $(BOLOS_SDK)/Makefile.rules
+
+# PEN: ADDED
+$(info $$BOLOS_SDK is [${BOLOS_SDK}] $(NEWLINE))
 
 dep/%.d: %.c Makefile
 
