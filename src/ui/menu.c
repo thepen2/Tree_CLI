@@ -23,10 +23,6 @@
 #include "menu.h"
 #include "../crypto.h"
 
-// TEST SIGNATURE INPUT
-//static char testSig2[145] = { 0 };
-
-
 // PEN: EXTRA INCLUDES
 #include "extra1.h"  
 #include "extra2.h"  

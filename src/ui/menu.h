@@ -20,5 +20,4 @@ void ui_menu_show_hot_pub_key(void);
 void ui_menu_show_cold_pub_key(void);
 void ui_menu_show_hot_address(void);
 void ui_menu_show_cold_address(void);
-//void ui_menu_show_test_sig(void);
 
