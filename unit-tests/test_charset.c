@@ -53,9 +53,24 @@ static void test_hexadecimal(void **state) {
 }
 
 
+static void test_text_string(void **state) {
+    (void) state;
+
+    unsigned char text_string_chars[] = {'p', 'w', 'd', ' ', 'c', 'h', 'a', 'n', 'g', 'e', 
+                                          0x00};
+
+    assert_true( isTextString( (unsigned char *) text_string_chars, 0, 11));
+
+    unsigned char not_text_string_chars[] = {':', 0x01};
+
+    assert_false( isTextString( (unsigned char *) not_text_string_chars, 0, 2));
+}
+
+
 int main() {
     const struct CMUnitTest tests[] = {cmocka_unit_test(test_is_base58),
                                        cmocka_unit_test(test_decimal),
+                                       cmocka_unit_test(test_text_string),
                                        cmocka_unit_test(test_hexadecimal)};
 
     return cmocka_run_group_tests(tests, NULL, NULL);
