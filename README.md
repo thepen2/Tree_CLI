@@ -4,7 +4,7 @@
 
 For our new Ledger Nano app, the /bin-nanos directory contains Nano S compiles, the /bin-nanosp directory contains Nano S Plus compiles, and the /bin-nanox directory contains Nano X compiles.<br><br>
 
-In the /bin-tree_cli directory is our tree_cli_plus.exe Win32 command line program to test the new functions.<br><br>
+In the /bin-tree_cli directory is our tree_cli_plus.exe Win32 command line interface (CLI) program to test the new functions.<br><br>
 
 Usage: (for tree_cli_plus.exe)<br>
     tree_cli_plus 0 // sign_tx() address mismatch (deliberate)<br>
