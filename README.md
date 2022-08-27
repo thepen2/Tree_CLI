@@ -10,9 +10,9 @@ Usage: (for tree_cli_plus.exe)<br><br>
     tree_cli_plus 2 // approve_password_change<br>
     tree_cli_plus 3 // get_version<br>
     tree_cli_plus 4 // get_app_name<br>
-    tree_cli_plus 5 // get_public_key m/44'/632'/0'<br>
+    tree_cli_plus 5 // get_public_key m/44'/644'/0'<br>
     tree_cli_plus 6 // sign_startup<br>
-    tree_cli_plus 7 // get_public_key m/44'/632'/1'<br>
+    tree_cli_plus 7 // get_public_key m/44'/644'/1'<br>
     tree_cli_plus 8 // sign_tx (1 recipient)<br>
     tree_cli_plus 9 // sign_tx (2 recipients)<br><br>
 
