@@ -20,7 +20,7 @@ The main commands use `CLA` = 0xE0, except for `INS` 01 where `CLA` = 0xB0.
 
 ### Interactive commands
 
-The message signing operation is executed via an interactive protocol that requires 3 rounds. First a GET_PUBLIC_KEY command `INS` = 0x05 is sent.  If a status word of 0x9000 (success) is received, then the SIGN_MESSAGE command itself is sent in 2 messages.  The first is a second transmission of the BIP32 path of the signing account, with `P2` is set to 0x80.  If a status word of 0x9000 (success) is received in response to that, the transaction data to be signed is sent in a second `INS` = 0x06 command with `P1` is set to 0x01.
+The transaction signing operation is executed via an interactive protocol that requires 3 rounds. First a GET_PUBLIC_KEY command `INS` = 0x05 is sent.  If a status word of 0x9000 (success) is received, then the SIGN_MESSAGE command itself is sent in 2 messages.  The first is a second transmission of the BIP32 path of the signing account, with `P2` is set to 0x80.  If a status word of 0x9000 (success) is received in response to that, the transaction data to be signed is sent in a second `INS` = 0x06 command with `P1` is set to 0x01.
 
 The specs for the client commands are detailed below.
 
