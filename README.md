@@ -1,6 +1,6 @@
 # Tree_CLI<br><br>
 
-<b>Tree cryptocurrency application interface, registerded as coin type 644 with https://github.com/satoshilabs/slips/blob/master/slip-0044.md:</b><br><br>
+<b>Tree cryptocurrency application interface, registered as coin type 644 with https://github.com/satoshilabs/slips/blob/master/slip-0044.md:</b><br><br>
 
 For our new Ledger Nano app, the /bin-nanos directory contains Nano S compiles, the /bin-nanosp directory contains Nano S Plus compiles, and the /bin-nanox directory contains Nano X compiles.<br><br>
 
