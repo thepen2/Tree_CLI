@@ -276,7 +276,7 @@ The return is the public key and the chain code corresponding to the BIP32 path 
 
 ### SIGN_TRANSACTION
 
-Request signing of both cryptocurrency transactions and other authorization operations.  The first message input data duplicates the GET_PUBLIC_KEY_MESSAGE, but with `INS` = 0x06 and `P2` = 0x80.  The input CData for the second message is given above, depending on the type of signing request or authorization requested.
+Request signing of both cryptocurrency transactions and other authorization operations.  The first message input data duplicates the GET_PUBLIC_KEY measage, but with `INS` = 0x06 and `P2` = 0x80.  The input CData for the second message is given above, depending on the type of signing request or authorization requested.
 
 
 **Command**
