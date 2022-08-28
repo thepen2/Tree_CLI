@@ -161,9 +161,7 @@ None
 
 **Output data**
 
-| Length | Description |
-|--------|-------------|
-| varies | The app name and version open on the Nano device |
+The app name and version open on the Nano device.
 
 #### Description
 
@@ -179,7 +177,7 @@ The return is in the following format:
 
 ### GET_VERSION
 
-Gets the version of the open Nano app
+Gets the version of the open Nano app.
 
 #### Encoding
 
@@ -195,9 +193,7 @@ None
 
 **Output data**
 
-| Length  | Description     |
-|---------|-----------------|
-| varies  | The version of the open app on the Nano device |
+The version of the open app on the Nano device.
 
 #### Description
 
@@ -209,7 +205,7 @@ The return is in the following format:
 
 ### GET_APP_NAME
 
-Gets the name of the open Nano app
+Gets the name of the open Nano app.
 
 #### Encoding
 
@@ -225,9 +221,7 @@ None
 
 **Output data**
 
-| Length   | Description     |
-|----------|-----------------|
-| varies   | The name of the open app on the Nano device |
+The name of the open app on the Nano device.
 
 #### Description
 
