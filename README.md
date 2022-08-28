@@ -22,7 +22,7 @@ CHANGES TO THE FOLLOWING FILES:<br>
 /src/common/base58.c (new functions to validate base58, decimal, hexadecimal, and text string char arrays)<br>
 /src/common/base58.h<br>
 /src/handler/sign_tx.c (forks to new transaction format handlers)<br>
-/src/sw.h (new 0X7001 status word for address/BIP32 mismatch)<br>
+/src/sw.h (new 0x7001 status word for address/BIP32 mismatch)<br>
 /src/transaction/deserialize.c (new functions to parse additional transaction formats)<br>
 /src/transaction/deserialize.h<br>
 /src/transaction/types.h (new transaction struct elements and additional error messsage defines)<br>
