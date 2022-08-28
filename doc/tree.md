@@ -30,7 +30,9 @@ The Tree Nano app provides for two 34 character base58 account addresses per Nan
 
 In addition, this pair of account addresses is permanently assigned to a particular 8 digit hexadecimal blockchain number represented in ASCII, in a one time process on the network in which the Tree Nano app is not involved.  The full blockchain address of an account in the Tree network is then given as `blockchain_number:account_address` (43 characters), using a colon as a separator.  The blockchain assignment is what authorizes the accounts to transact with other accounts on the Tree network.
 
-## Tree client application start up
+## CData for SIGN_TRANSACTION requests (second message)
+
+### Tree client application start up
 
 The Tree client application on start up first sends a special signing request to the Tree Nano app, with byte [10] of the CData set to 0x3a, and byte [11] set to 0x02 or 0x03 (the first byte of a compressed public key).  If the signature returned by the Tree Nano app verifies this authorizes the start up of the Tree client application for further operations on the Tree network.  The full format of the CData of this signing request is as follows:
 
@@ -41,9 +43,9 @@ The Tree client application on start up first sends a special signing request to
 | 33          | Compressed public key (hexadecimal) |
 |  1          | Colon separator (0x3a) |
 | 43          | Sender blockchain address (mixed format) |
+ 
 
-
-## Tree client general authorizations
+### Tree client general authorizations
 
 The Tree client application also uses a signing request to authorize other operations, with byte [10] of the CData also set to 0x3a, but with byte [11] set to 0x01.  In this case the field that follows is a plain text string, a descriptor of the operation to be authorized.  The full format of the CData of this signing request is as follows:
 
@@ -58,7 +60,7 @@ The Tree client application also uses a signing request to authorize other opera
 | 43          | Sender blockchain address (mixed format) |
 
 
-## Tree cryptocurrency transaction signing
+### Tree cryptocurrency transaction signing
 
 Otherwise signing requests are used to sign transaction data.  In this case, byte [10] of the CDATA is the transaction type, a hexadecimal character other than 0x3a.  There can be either 1 or 2 recipients of a Tree cryptocurrency transaction, flagged by byte [86] of the CData.  The recipient 2 blockchain address and amount fields are only present if the number of recipients is 2.  The full format of a cryptocurrency transaction signing request is as follows:
 
@@ -268,7 +270,7 @@ The return is the public key and the chain code corresponding to the BIP32 path 
 
 ### SIGN_TRANSACTION
 
-Request signing of both cryptocurrency transactions and other authorization operations.  The first message input data duplicates the GET_PUBLIC_KEY_MESSAGE, but with INS = 0x06 and P2 = 0x80.  The input data for the second message is given above, depending on the type of authorization requested.
+Request signing of both cryptocurrency transactions and other authorization operations.  The first message input data duplicates the GET_PUBLIC_KEY_MESSAGE, but with `INS` = 0x06 and `P2` = 0x80.  The input CData for the second message is given above, depending on the type of signing request or authorization requested.
 
 
 **Command**
