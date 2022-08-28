@@ -39,9 +39,9 @@ The Tree client application on start up first sends a special signing request to
 | Length      | Description     |
 |-------------|-----------------|
 | 10          | Timestamp (decimal ASCII) |
-|  1          | Transaction type (hexadecimal = 0x3a) |
+| 1           | Transaction type (hexadecimal = 0x3a) |
 | 33          | Compressed public key (hexadecimal) |
-|  1          | Colon separator (0x3a) |
+| 1           | Colon separator (0x3a) |
 | 43          | Sender blockchain address (mixed format) |
  
 
@@ -53,10 +53,10 @@ The Tree client application also uses a signing request to authorize other opera
 | Length      | Description     |
 |-------------|-----------------|
 | 10          | Timestamp (decimal ASCII) |
-|  1          | Transaction type (hexadecimal = 0x3a) |
-|  1          | General authorization flag (0x01) |
+| 1           | Transaction type (hexadecimal = 0x3a) |
+| 1           | General authorization flag (0x01) |
 | 32          | Text string (ASCII) |
-|  1          | Colon separator (0x3a) |
+| 1           | Colon separator (0x3a) |
 | 43          | Sender blockchain address (mixed format) |
 
 
@@ -67,10 +67,10 @@ Otherwise signing requests are used to sign transaction data.  In this case, byt
 | Length      | Description     |
 |-------------|-----------------|
 | 10          | Timestamp (decimal ASCII) |
-|  1          | Transaction type (hexadecimal) |
+| 1           | Transaction type (hexadecimal) |
 | 43          | Sender blockchain address (mixed format) |
 | 32          | Transaction ID (hexadecimal) |
-|  1          | Number of recipients (hexadecimal) |
+| 1           | Number of recipients (hexadecimal) |
 | 43          | Recipient 1 blockchain address (43 chars mixed format)
 | 16          | Amount 1 (decimal ASCII)
 | 43          | Recipient 2 blockchain address (43 chars mixed format) OPTIONAL
