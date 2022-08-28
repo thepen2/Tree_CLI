@@ -5,7 +5,7 @@ Tree Nano application : Technical Specifications
 
 ### APDUs
 
-The messaging format of the Tree Nano app is compatible with the [APDU protocol](https://developers.ledger.com/docs/nano-app/application-structure/#apdu-interpretation-loop). The `P1` and `P2` fields are set to 0 in all messages but `INS = 0x06`, where `P2` is set to 0x80 for the first message, and `P1` is set to 0x01 for second message in a set of 2 messages.
+The messaging format of the Tree Nano app is compatible with the [APDU protocol](https://developers.ledger.com/docs/nano-app/application-structure/#apdu-interpretation-loop). The `P1` and `P2` fields are set to 0 in all messages but `INS` = 0x06, where `P2` is set to 0x80 for the first message, and `P1` is set to 0x01 for second message in a set of 2 messages.
 
 The main commands use `CLA = 0xE0`, except for `INS 01` where `CLA = 0xB0`.
 
@@ -20,7 +20,7 @@ The main commands use `CLA = 0xE0`, except for `INS 01` where `CLA = 0xB0`.
 
 ### Interactive commands
 
-The message signing operation is executed via an interactive protocol that requires 3 rounds. First a GET_PUBLIC_KEY command `INS = 0x05` is sent.  If a status word of 0x9000 (success) is received, then the SIGN_MESSAGE command itself is sent in 2 messages.  The first is a second transmission of the BIP32 path of the signing account, with `P2` is set to 0x80.  If a status word of 0x9000 (success) is received in response to that, the transaction data to be signed is sent in a second `INS = 0x06` command with `P1` is set to 0x01.
+The message signing operation is executed via an interactive protocol that requires 3 rounds. First a GET_PUBLIC_KEY command `INS` = 0x05 is sent.  If a status word of 0x9000 (success) is received, then the SIGN_MESSAGE command itself is sent in 2 messages.  The first is a second transmission of the BIP32 path of the signing account, with `P2` is set to 0x80.  If a status word of 0x9000 (success) is received in response to that, the transaction data to be signed is sent in a second `INS` = 0x06 command with `P1` is set to 0x01.
 
 The specs for the client commands are detailed below.
 
@@ -149,9 +149,9 @@ Returns the app name and version open on the Nano device.
 
 **Command**
 
-| *CLA* | *INS* |
-|-------|-------|
-| B0    | 01    |
+| CLA | INS |
+|-----|-----|
+| B0  | 01  |
 
 **Input data**
 
@@ -182,9 +182,9 @@ Gets the version of the open Nano app
 
 **Command**
 
-| *CLA* | *INS* |
-|-------|-------|
-| E0    | 03    |
+| CLA | INS |
+|-----|-----|
+| E0  | 03  |
 
 **Input data**
 
@@ -211,9 +211,9 @@ Gets the name of the open Nano app
 
 **Command**
 
-| *CLA* | *INS* |
-|-------|-------|
-| E0    | 04    |
+| CLA | INS |
+|-----|-----|
+| E0  | 04  |
 
 **Input data**
 
@@ -240,9 +240,9 @@ Gets the public key corresponding to the corresponding BIP32 path for the respec
 
 **Command**
 
-| *CLA* | *INS* |
-|-------|-------|
-| E0    | 05    |
+| CLA | INS |
+|-----|-----|
+| E0  | 05  |
 
 **Input data**
 
@@ -273,9 +273,9 @@ Request signing of both cryptocurrency transactions and other authorization oper
 
 **Command**
 
-| *CLA* | *INS* |
-|-------|-------|
-| E0    | 06    |
+| CLA | INS |
+|-----|-----|
+| E0  | 06  |
 
 **Input data**
 
