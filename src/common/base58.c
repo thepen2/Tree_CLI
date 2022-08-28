@@ -110,7 +110,7 @@ bool isHexadecimal(unsigned char *inChars, int startPos, int sizeIn ) {
     return 1;
 }
 
-// PEN: TEST FOR HEXADECIMAL CHARS
+// PEN: TEST FOR TEXT STRING CHARS
 bool isTextString(unsigned char *inChars, int startPos, int sizeIn ) {
 
     int ci;
