@@ -248,7 +248,7 @@ Gets the public key corresponding to the corresponding BIP32 path for the respec
 
 | Length  | Description          |
 |---------|----------------------|
-| 1       | BIP32 length (hexadecimal |
+| 1       | BIP32 length (hexadecimal 0x03) |
 | 4       | 0x800002c (BIP44 type) |
 | 4       | 0x8000284 (coin type 644') |
 | 4       | Account number (0x80000000 or 0x80000001) |
