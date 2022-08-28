@@ -170,9 +170,9 @@ The return is in the following format:
 | Length  | Description |
 |---------|-------------|
 | 1       | 0x01        |
-| 1       | Length of app name (hex) |
+| 1       | Length of app name (hexadecimal) |
 | varies  | App name (ASCII) |
-| 1       | Length of app version (hex) |
+| 1       | Length of app version (hexadecimal) |
 | varies  | App version (ASCII) |
 
 ### GET_VERSION
@@ -201,7 +201,7 @@ The return is in the following format:
 
 | Length  | Description       |
 |---------|-------------------|
-| 3       | App version (hex) |
+| 3       | App version (hexadecimal) |
 
 ### GET_APP_NAME
 
@@ -288,7 +288,7 @@ See the above.
 
 | Length   | Description     |
 |----------|-----------------|
-| 1        | Length of signature (1 char hexadecimal) |
+| 1        | Length of signature (hexadecimal) |
 | varies   | DER signature (hexadecimal, max 72 chars) |
 
 
