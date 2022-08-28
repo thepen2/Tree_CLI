@@ -70,7 +70,7 @@ Otherwise signing requests are used to sign transaction data.  In this case, byt
 |  1          | Transaction type (hexadecimal) |
 | 43          | Sender blockchain address (mixed format) |
 | 32          | Transaction ID (hexadecimal) |
-]  1          | Number of recipients (hexadecimal) |
+|  1          | Number of recipients (hexadecimal) |
 | 43          | Recipient 1 blockchain address (43 chars mixed format)
 | 16          | Amount 1 (decimal ASCII)
 | 43          | Recipient 2 blockchain address (43 chars mixed format) OPTIONAL
@@ -171,10 +171,10 @@ The return is in the following format:
 
 | Length  | Description |
 |---------|-------------|
-] 1       | 0x01        |
-[ 1       | Length of app name (hex) |
+| 1       | 0x01        |
+| 1       | Length of app name (hex) |
 | varies  | App name (ASCII) |
-[ 1       | Length of app version (hex) |
+| 1       | Length of app version (hex) |
 | varies  | App version (ASCII) |
 
 ### GET_VERSION
