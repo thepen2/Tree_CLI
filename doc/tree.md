@@ -5,7 +5,7 @@ Tree Nano application : Technical Specifications
 
 ### APDUs
 
-The messaging format of the Tree Nano app is compatible with the [APDU protocol](https://developers.ledger.com/docs/nano-app/application-structure/#apdu-interpretation-loop). The `P1` and `P2` fields are set to `0` in all messages but `INS = 0x06`, where `P2` is set to `0x80` for the first message, and `P1` is set to `0x01` for second message in a set of 2 messages.
+The messaging format of the Tree Nano app is compatible with the [APDU protocol](https://developers.ledger.com/docs/nano-app/application-structure/#apdu-interpretation-loop). The `P1` and `P2` fields are set to 0 in all messages but `INS = 0x06`, where `P2` is set to 0x80 for the first message, and `P1` is set to 0x01 for second message in a set of 2 messages.
 
 The main commands use `CLA = 0xE0`, except for `INS 01` where `CLA = 0xB0`.
 
@@ -20,13 +20,13 @@ The main commands use `CLA = 0xE0`, except for `INS 01` where `CLA = 0xB0`.
 
 ### Interactive commands
 
-The message signing operation is executed via an interactive protocol that requires 3 rounds. First a GET_PUBLIC_KEY command `INS = 0x05` is sent.  If a status word of `0x9000` (success) is received, then the SIGN_MESSAGE command itself is sent in 2 messages.  The first is a second transmission of the BIP32 path of the signing account, with `P2` is set to `0x80`.  If a status word of `0x9000` (success) is received in response to that, the transaction data to be signed is sent in a second `INS = 0x06` command with `P1` is set to `0x01`.
+The message signing operation is executed via an interactive protocol that requires 3 rounds. First a GET_PUBLIC_KEY command `INS = 0x05` is sent.  If a status word of 0x9000 (success) is received, then the SIGN_MESSAGE command itself is sent in 2 messages.  The first is a second transmission of the BIP32 path of the signing account, with `P2` is set to 0x80.  If a status word of 0x9000 (success) is received in response to that, the transaction data to be signed is sent in a second `INS = 0x06` command with `P1` is set to 0x01.
 
 The specs for the client commands are detailed below.
 
 ## Wallet specifications
 
-The Tree Nano app provides for 2 account addresses per Nano device, derived from the operational internal seeds using the BIP32 paths `m/44'/644'/0'` and `m/44'/644'/1'`.  The first is designated as the Tree hot wallet, the second the Tree cold wallet.  The hot wallet uses the network byte `0x28` so that the base58 address generation results in the first character of the account address being H`.  The cold wallet uses a network byte of `0x1c` resulting in a first character of `C`.  
+The Tree Nano app provides for 2 account addresses per Nano device, derived from the operational internal seeds using the BIP32 paths `m/44'/644'/0'` and `m/44'/644'/1'`.  The first is designated as the Tree hot wallet, the second the Tree cold wallet.  The hot wallet uses the network byte 0x28 so that the base58 address generation results in the first character of the account address being H.  The cold wallet uses a network byte of 0x1c resulting in a first character of C.  
 
 In addition, this pair of account addresses is permanently assigned to a particular 8 digit hexadecimal blockchain number, in a one time process on the network in which the Tree Nano app is not involved.  The full blockchain address of an account in the Tree network is then given as 43 character `blockchain_number:account_address`, using a colon as a separator.  The blockchain assignment is what authorizes the accounts to transact with other accounts on the Tree network.
 
@@ -78,7 +78,7 @@ Otherwise signing requests are used to sign transaction data.  In this case, byt
 
 ## Address matching 
 
-As a security feature the Tree Nano app will only sign a transaction if the Sender base58 account address matches the one generated internally by the corresponding BIP32 path, m/44'/644'/0' for the hot account or m/44/644'/1' for the cold account, respectively.  Otherwise a status of 0x7001 is returned.
+As a security feature the Tree Nano app will only sign a transaction if the Sender base58 account address matches the one generated internally by the corresponding BIP32 path, `m/44'/644'/0'` for the hot account or `m/44/644'/1'` for the cold account, respectively.  Otherwise a status of 0x7001 is returned.
 
 ## Main status words
 
@@ -161,7 +161,7 @@ None
 
 | Length | Description |
 |--------|-------------|
-| `<variable>` | The app name and version open on the Nano device |
+| varies | The app name and version open on the Nano device |
 
 #### Description
 
@@ -192,9 +192,9 @@ None
 
 **Output data**
 
-| Length      | Description     |
-|-------------|-----------------|
-| <variable>  | The version of the open app on the Nano device |
+| Length  | Description     |
+|---------|-----------------|
+| varies  | The version of the open app on the Nano device |
 
 #### Description
 
@@ -221,9 +221,9 @@ None
 
 **Output data**
 
-| Length      | Description     |
-|-------------|-----------------|
-| <variable>  | The name of the open app on the Nano device |
+| Length   | Description     |
+|----------|-----------------|
+| varies   | The name of the open app on the Nano device |
 
 #### Description
 
@@ -253,12 +253,12 @@ Account number (hexadecimal, 0x80000000 for hot account, 0x80000001 for cold acc
 
 **Output data**
 
-| Length      | Description     |
-|-------------|-----------------|
-| 1           | Length of public key (1 char hexadecimal = 0x41) |
-| 65          | Public key (hexadecimal) |
-| 1           | Length of chain code (1 char hexadecimal = 0x20) |
-| 32          | Chain code (hexadecimal) |
+| Length   | Description     |
+|----------|-----------------|
+| 1        | Length of public key (1 char hexadecimal = 0x41) |
+| 65       | Public key (hexadecimal) |
+| 1        | Length of chain code (1 char hexadecimal = 0x20) |
+| 32       | Chain code (hexadecimal) |
 
 
 #### Description
@@ -284,10 +284,10 @@ See the above.
 **Output data**
 
 
-| Length      | Description     |
-|-------------|-----------------|
-| 1           | Length of signature (1 char hexadecimal) |
-| <variable>  | DER signature (hexadecimal, max 72 chars) |
+| Length   | Description     |
+|----------|-----------------|
+| 1        | Length of signature (1 char hexadecimal) |
+| varies   | DER signature (hexadecimal, max 72 chars) |
 
 
 
@@ -295,5 +295,5 @@ See the above.
 
 The input data for signing transactions is vetted to confirm that all fields are appropriately limited to appropriate characters.  Compressed public keys must start with either 0x02 or 0x03. Timestamp and amount fields are limited to decimal ascii characters.  Blockchain numbers must be ascii respresentations of hex characters (0-9, a-f).  Account addresses must be comprised of base58 characters.
 
-In addition, the Nano app checks to confirm that the sender account Tree address matches the one generated by the corresponding BIP32 path on device from the secret seed words.  If the first character of the sender address is H it must match that generated by m/44'/644'/0'.  If the first character of the sender address is C it must match that generated by m/44'/644'/1'.  Otherwise the transaction is rejected.
+In addition, the Nano app checks to confirm that the sender account Tree address matches the one generated by the corresponding BIP32 path on device from the secret seed words.  If the first character of the sender address is H it must match that generated by `m/44'/644'/0'`.  If the first character of the sender address is C it must match that generated by `m/44'/644'/1'`.  Otherwise the transaction is rejected.
 
