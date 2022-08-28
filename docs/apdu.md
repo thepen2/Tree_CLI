@@ -39,7 +39,7 @@ The Tree client application on start up first sends a special signing request to
 | Length      | Description     |
 |-------------|-----------------|
 | 10          | Timestamp (decimal ASCII) |
-| 1           | Transaction type (hexadecimal 0x3a) |
+| 1           | Transaction type (0x3a) |
 | 33          | Compressed public key (hexadecimal) |
 | 1           | Colon separator (0x3a) |
 | 43          | Sender blockchain address (mixed format) |
@@ -53,7 +53,7 @@ The Tree client application also uses a signing request to authorize other opera
 | Length      | Description     |
 |-------------|-----------------|
 | 10          | Timestamp (decimal ASCII) |
-| 1           | Transaction type (hexadecimal 0x3a) |
+| 1           | Transaction type (0x3a) |
 | 1           | General authorization flag (0x01) |
 | 32          | Text string (ASCII) |
 | 1           | Colon separator (0x3a) |
@@ -248,7 +248,7 @@ Gets the public key corresponding to the corresponding BIP32 path for the respec
 
 | Length  | Description          |
 |---------|----------------------|
-| 1       | BIP32 length (hexadecimal 0x03) |
+| 1       | BIP32 length (0x03) |
 | 4       | 0x800002c (BIP44 type) |
 | 4       | 0x8000284 (coin type 644') |
 | 4       | Account number (0x80000000 or 0x80000001) |
@@ -257,9 +257,9 @@ Gets the public key corresponding to the corresponding BIP32 path for the respec
 
 | Length   | Description     |
 |----------|-----------------|
-| 1        | Length of public key (hexadecimal 0x41) |
+| 1        | Length of public key (0x41) |
 | 65       | Public key (hexadecimal) |
-| 1        | Length of chain code (hexadecimal 0x20) |
+| 1        | Length of chain code (0x20) |
 | 32       | Chain code (hexadecimal) |
 
 
