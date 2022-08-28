@@ -7,7 +7,7 @@ Tree Nano application : Technical Specifications
 
 The messaging format of the Tree Nano app is compatible with the [APDU protocol](https://developers.ledger.com/docs/nano-app/application-structure/#apdu-interpretation-loop). The `P1` and `P2` fields are set to 0 in all messages but `INS` = 0x06, where `P2` is set to 0x80 for the first message, and `P1` is set to 0x01 for second message in a set of 2 messages.
 
-The main commands use `CLA = 0xE0`, except for `INS 01` where `CLA = 0xB0`.
+The main commands use `CLA` = 0xE0, except for `INS` 01 where `CLA` = 0xB0.
 
 | CLA | INS | COMMAND NAME         | DESCRIPTION |
 |-----|-----|----------------------|-------------|
@@ -28,7 +28,7 @@ The specs for the client commands are detailed below.
 
 The Tree Nano app provides for 2 account addresses per Nano device, derived from the operational internal seeds using the BIP32 paths `m/44'/644'/0'` and `m/44'/644'/1'`.  The first is designated as the Tree hot wallet, the second the Tree cold wallet.  The hot wallet uses the network byte 0x28 so that the base58 address generation results in the first character of the account address being H.  The cold wallet uses a network byte of 0x1c resulting in a first character of C.  
 
-In addition, this pair of account addresses is permanently assigned to a particular 8 digit hexadecimal blockchain number, in a one time process on the network in which the Tree Nano app is not involved.  The full blockchain address of an account in the Tree network is then given as 43 character `blockchain_number:account_address`, using a colon as a separator.  The blockchain assignment is what authorizes the accounts to transact with other accounts on the Tree network.
+In addition, this pair of account addresses is permanently assigned to a particular 8 digit hexadecimal blockchain number represented in ASCII, in a one time process on the network in which the Tree Nano app is not involved.  The full blockchain address of an account in the Tree network is then given as `blockchain_number:account_address` (43 characters), using a colon as a separator.  The blockchain assignment is what authorizes the accounts to transact with other accounts on the Tree network.
 
 ## Tree client application start up
 
@@ -36,7 +36,7 @@ The Tree client application on start up first sends a special signing request to
 
 | Length      | Description     |
 |-------------|-----------------|
-| 10          | Timestamp (decimal ascii) |
+| 10          | Timestamp (decimal ASCII) |
 |  1          | Transaction type (hexadecimal = 0x3a) |
 | 33          | Compressed public key (hexadecimal) |
 |  1          | Colon separator (0x3a) |
@@ -50,10 +50,10 @@ The Tree client application also uses a signing request to authorize other opera
 
 | Length      | Description     |
 |-------------|-----------------|
-| 10          | Timestamp (decimal ascii) |
+| 10          | Timestamp (decimal ASCII) |
 |  1          | Transaction type (hexadecimal = 0x3a) |
 |  1          | General authorization flag (0x01) |
-| 32          | Text string (ascii) |
+| 32          | Text string (ASCII) |
 |  1          | Colon separator (0x3a) |
 | 43          | Sender blockchain address (mixed format) |
 
@@ -64,15 +64,15 @@ Otherwise signing requests are used to sign transaction data.  In this case, byt
 
 | Length      | Description     |
 |-------------|-----------------|
-| 10          | Timestamp (decimal ascii) |
+| 10          | Timestamp (decimal ASCII) |
 |  1          | Transaction type (hexadecimal) |
 | 43          | Sender blockchain address (mixed format) |
 | 32          | Transaction ID (hexadecimal) |
 ]  1          | Number of recipients (hexadecimal) |
 | 43          | Recipient 1 blockchain address (43 chars mixed format)
-| 16          | Amount 1 (decimal ascii)
+| 16          | Amount 1 (decimal ASCII)
 | 43          | Recipient 2 blockchain address (43 chars mixed format) OPTIONAL
-| 16          | Amount 2 (decimal ascii) OPTIONAL
+| 16          | Amount 2 (decimal ASCII) OPTIONAL
 | 33          | Sender compressed public key (hexadecimal) |
 
 
@@ -169,9 +169,9 @@ The return is in the following format:
 
 0x01
 Length of app name (1 char hex)
-App name (variable length ascii)
+App name (variable length ASCII)
 Length of app version (1 char hex)
-App version (variable length ascii)
+App version (variable length ASCII)
 
 
 ### GET_VERSION
@@ -229,7 +229,7 @@ None
 
 The return is in the following format:
 
-App name (variable chars ascii)
+App name (variable chars ASCII)
 
 
 ### GET_PUBLIC_KEY
@@ -293,7 +293,7 @@ See the above.
 
 ## Security considerations for signing requests
 
-The input data for signing transactions is vetted to confirm that all fields are appropriately limited to appropriate characters.  Compressed public keys must start with either 0x02 or 0x03. Timestamp and amount fields are limited to decimal ascii characters.  Blockchain numbers must be ascii respresentations of hex characters (0-9, a-f).  Account addresses must be comprised of base58 characters.
+The input data for signing transactions is vetted to confirm that all fields are appropriately limited to appropriate characters.  Compressed public keys must start with either 0x02 or 0x03. Timestamp and amount fields are limited to decimal ASCII characters.  Blockchain numbers must be ASCII respresentations of hex characters (0-9, a-f).  Account addresses must be comprised of base58 characters.
 
 In addition, the Nano app checks to confirm that the sender account Tree address matches the one generated by the corresponding BIP32 path on device from the secret seed words.  If the first character of the sender address is H it must match that generated by `m/44'/644'/0'`.  If the first character of the sender address is C it must match that generated by `m/44'/644'/1'`.  Otherwise the transaction is rejected.
 
