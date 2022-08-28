@@ -169,12 +169,13 @@ None
 
 The return is in the following format:
 
-0x01
-Length of app name (1 char hex)
-App name (variable length ASCII)
-Length of app version (1 char hex)
-App version (variable length ASCII)
-
+| Length  | Description |
+|---------|-------------|
+] 1       | 0x01        |
+[ 1       | Length of app name (hex) |
+| varies  | App name (ASCII) |
+[ 1       | Length of app version (hex) |
+| varies  | App version (ASCII) |
 
 ### GET_VERSION
 
@@ -202,8 +203,9 @@ None
 
 The return is in the following format:
 
-App version (3 chars hex)
-
+| Length  | Description       |
+|---------|-------------------|
+| 3       | App version (hex) |
 
 ### GET_APP_NAME
 
@@ -231,7 +233,9 @@ None
 
 The return is in the following format:
 
-App name (variable chars ASCII)
+| Length  | Description      |
+|---------|------------------|
+| varies  | App name (ASCII) |
 
 
 ### GET_PUBLIC_KEY
@@ -248,10 +252,12 @@ Gets the public key corresponding to the corresponding BIP32 path for the respec
 
 **Input data**
 
-BIP32 length (0x03)
-0x8000002c (BIP protocol, hardended)
-0x80000284 (coin type 644, hardended)
-Account number (hexadecimal, 0x80000000 for hot account, 0x80000001 for cold account)
+| Length  | Description          |
+|---------|----------------------|
+| 1       | BIP32 length (hexadecimal |
+| 4       | 0x800002c (BIP44 type) |
+| 4       | 0x8000284 (coin type 644') |
+| 4       | Account number (0x80000000 or 0x80000001) |
 
 **Output data**
 
