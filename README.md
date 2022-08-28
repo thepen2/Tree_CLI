@@ -7,16 +7,16 @@ For our new Ledger Nano app, the /bin-nanos directory contains Nano S compiles, 
 In the /bin-tree_cli directory is our tree_cli_plus.exe Win32 command line interface (CLI) program to test the new functions.<br><br>
 
 Usage: (for tree_cli_plus.exe)<br>
-    tree_cli_plus 0    // sign_tx address mismatch (deliberate)<br>
-    tree_cli_plus 1    // get_app_and_version<br>
-    tree_cli_plus 2    // approve_password_change<br>
-    tree_cli_plus 3    // get_version<br>
-    tree_cli_plus 4    // get_app_name<br>
-    tree_cli_plus 5    // get_public_key m/44'/644'/0'<br>
-    tree_cli_plus 6    // sign_startup<br>
-    tree_cli_plus 7    // get_public_key m/44'/644'/1'<br>
-    tree_cli_plus 8    // sign_tx (1 recipient)<br>
-    tree_cli_plus 9    // sign_tx (2 recipients)<br><br>
+    tree_cli_plus 0    &nbsp;&nbsp;// sign_tx address mismatch (deliberate)<br>
+    tree_cli_plus 1     &nbsp;&nbsp;// get_app_and_version<br>
+    tree_cli_plus 2     &nbsp;&nbsp;// approve_password_change<br>
+    tree_cli_plus 3     &nbsp;&nbsp;// get_version<br>
+    tree_cli_plus 4     &nbsp;&nbsp;// get_app_name<br>
+    tree_cli_plus 5     &nbsp;&nbsp;// get_public_key m/44'/644'/0'<br>
+    tree_cli_plus 6     &nbsp;&nbsp;// sign_startup<br>
+    tree_cli_plus 7     &nbsp;&nbsp;// get_public_key m/44'/644'/1'<br>
+    tree_cli_plus 8     &nbsp;&nbsp;// sign_tx (1 recipient)<br>
+    tree_cli_plus 9     &nbsp;&nbsp;// sign_tx (2 recipients)<br><br>
 
 CHANGES TO THE FOLLOWING FILES:<br>
 /src/common/base58.c (new functions to validate base58, decimal, hexadecimal, and text string char arrays)<br>
