@@ -1,6 +1,6 @@
 # Tree_CLI<br><br>
 
-<b>Tree cryptocurrency application interface, registered as coin type 644 with https://github.com/satoshilabs/slips/blob/master/slip-0044.md:</b><br><br>
+<b>Tree cryptocurrency application interface, registered as cryptocurrency coin type 644 with https://github.com/satoshilabs/slips/blob/master/slip-0044.md:</b><br><br>
 
 For our new Ledger Nano app, the /bin-nanos directory contains Nano S compiles, the /bin-nanosp directory contains Nano S Plus compiles, and the /bin-nanox directory contains Nano X compiles.<br><br>
 
@@ -12,9 +12,9 @@ Usage: (for tree_cli_plus.exe)<br>
     tree_cli_plus 2      &nbsp;&nbsp;&nbsp;&nbsp;// approve_password_change<br>
     tree_cli_plus 3      &nbsp;&nbsp;&nbsp;&nbsp;// get_version<br>
     tree_cli_plus 4      &nbsp;&nbsp;&nbsp;&nbsp;// get_app_name<br>
-    tree_cli_plus 5      &nbsp;&nbsp;&nbsp;&nbsp;// get_public_key m/44'/644'/0'<br>
+    tree_cli_plus 5      &nbsp;&nbsp;&nbsp;&nbsp;// get_public_key m/44'/644'/0' (hot wallet)<br>
     tree_cli_plus 6      &nbsp;&nbsp;&nbsp;&nbsp;// sign_startup<br>
-    tree_cli_plus 7      &nbsp;&nbsp;&nbsp;&nbsp;// get_public_key m/44'/644'/1'<br>
+    tree_cli_plus 7      &nbsp;&nbsp;&nbsp;&nbsp;// get_public_key m/44'/644'/1' (cold wallet)<br>
     tree_cli_plus 8      &nbsp;&nbsp;&nbsp;&nbsp;// sign_tx (1 recipient)<br>
     tree_cli_plus 9      &nbsp;&nbsp;&nbsp;&nbsp;// sign_tx (2 recipients)<br><br>
 
